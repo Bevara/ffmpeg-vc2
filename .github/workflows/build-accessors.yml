@@ -1,0 +1,48 @@
+name: Build accessors
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  BUILD_TYPE: Release
+  EMCC_VERSION: 3.1.56
+  TAG_NUMBER: 1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: mymindstorm/setup-emsdk@v14
+      with:
+        version: ${{env.EMCC_VERSION}}
+  
+    - uses: actions/checkout@v4
+
+    - name: Configure 
+      run: emcmake cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+    - name: Retrieve tag name
+      run: |
+        echo "TAG_NAME=$(awk -F'[()]' '/add_filter/{print $2}' CMakeLists.txt | awk '{print $1}')" >> $GITHUB_OUTPUT
+      id: version
+
+    - name: Rename description file for release
+      run: cp ${{ steps.version.outputs.TAG_NAME }}.json ${{ steps.version.outputs.TAG_NAME }}_${{env.TAG_NUMBER}}.json
+
+    - name: Move accessor to the root of the project
+      run: cp build/${{ steps.version.outputs.TAG_NAME }}_${{env.TAG_NUMBER}}.wasm ${{ steps.version.outputs.TAG_NAME }}_${{env.TAG_NUMBER}}.wasm
+          
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: accessor-build  
+        path: |
+          ${{ steps.version.outputs.TAG_NAME }}_${{env.TAG_NUMBER}}.wasm
+          ${{ steps.version.outputs.TAG_NAME }}_${{env.TAG_NUMBER}}.json

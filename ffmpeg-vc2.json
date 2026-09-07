@@ -1,0 +1,22 @@
+{
+    "name": "ffmpeg-vc2",
+    "description": "VC-2 (SMPTE ST 2042) decoder",
+    "filters": [
+        "vc2dec"
+    ],
+    "help": "This is a reduced version of ffmpeg carrying the Dirac decoder only, which claims to cover VC-2 including the High Quality profile that schroedinger predates and refuses. Not verified: ffmpeg cannot decode the output of its own vc2 encoder, so there is nothing here to check a decode against. See the README.",
+    "support": [
+        "video"
+    ],
+    "sources": "https://bevara.ddns.net/sources/ffmpeg-vc2.accessor",
+    "filter_source": {
+        "vc2dec": "dec_vc2.c"
+    },
+    "Format": [
+        "VC2"
+    ],
+    "extension": {
+        "vc2": "canvas"
+    },
+    "licence_required": false
+}
