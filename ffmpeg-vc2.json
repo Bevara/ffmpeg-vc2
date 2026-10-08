@@ -18,5 +18,6 @@
     "extension": {
         "vc2": "canvas"
     },
-    "licence_required": false
+    "licence_required": false,
+    "using": ["solver_1"]
 }
