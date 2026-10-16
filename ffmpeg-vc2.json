@@ -18,6 +18,10 @@
     "extension": {
         "vc2": "canvas"
     },
-    "licence_required": false,
-    "using": ["solver_1"]
+    "using": ["solver_1"],
+    "patents": {
+        "status": "royalty-free",
+        "note": "SMPTE VC-2 (Dirac Pro)",
+        "checked": "2026-10-16"
+    }
 }
