@@ -1,5 +1,6 @@
 {
     "name": "ffmpeg-vc2",
+    "version": "1.0.1",
     "description": "VC-2 (SMPTE ST 2042) decoder",
     "filters": [
         "vc2dec"
