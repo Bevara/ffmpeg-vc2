@@ -1,6 +1,6 @@
 {
     "name": "ffmpeg-vc2",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "VC-2 (SMPTE ST 2042) decoder",
     "filters": [
         "vc2dec"
@@ -19,7 +19,7 @@
     "extension": {
         "vc2": "canvas"
     },
-    "using": ["solver_1"],
+    "using": ["mm_solver_1.0.1"],
     "patents": {
         "status": "royalty-free",
         "note": "SMPTE VC-2 (Dirac Pro)",
